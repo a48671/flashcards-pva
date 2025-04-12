@@ -14,7 +14,7 @@ export default defineConfig({
       manifest: {
         name: 'Flashcard App',
         short_name: 'Flashcards',
-        start_url: '/',
+        start_url: '/flashcards-pva/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#3f51b5',
