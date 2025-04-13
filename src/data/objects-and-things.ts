@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const objectsAndThings: Record<FlashcardId, IFlashcard> = {
   computer: {
     id: 'computer',

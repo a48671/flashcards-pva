@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const animals: Record<FlashcardId, IFlashcard> = {
   'dog': { id: 'dog', nativeText: 'собака', targetText: 'dog', image: 'dog.png', setId: 'animals' },
   'cat': { id: 'cat', nativeText: 'кошка', targetText: 'cat', image: 'cat.png', setId: 'animals' },

@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const colorsSet: Record<FlashcardId, IFlashcard> = {
   red: {
     id: 'red',

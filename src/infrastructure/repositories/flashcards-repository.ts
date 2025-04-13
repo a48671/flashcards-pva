@@ -1,4 +1,4 @@
-import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
+import { FlashcardSetId } from '@/domain/set';
 import { FlashcardId, IFlashcard } from '@/domain/flashcard';
 import { IFlashcardsRepository } from '@/domain/ports/flashcards-repository';
 

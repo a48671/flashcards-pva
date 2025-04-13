@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const schoolAndLearningSet: Record<FlashcardId, IFlashcard> = {
   school: {
     id: 'school',

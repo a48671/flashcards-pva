@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const places: Record<FlashcardId, IFlashcard> = {
   zoo: {
     id: 'zoo',

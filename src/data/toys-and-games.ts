@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const toysAndGamesSet: Record<FlashcardId, IFlashcard> = {
   toy: {
     id: 'toy',

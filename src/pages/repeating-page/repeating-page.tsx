@@ -1,6 +1,6 @@
 import { useFlashcardsRepository } from '@/application/use-flashcards-repository';
 import { useRepeatFlashcardsStorage } from '@/application/use-repeat-flashcards-storage';
-import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
+import { FlashcardSetId } from '@/domain/set';
 import { FlashcardId, IFlashcard } from '@/domain/flashcard';
 import { RepeatedFlashcardData } from '@/domain/ports/repeat-storage';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';

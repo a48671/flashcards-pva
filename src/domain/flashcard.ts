@@ -1,4 +1,4 @@
-import { FlashcardSetId } from './constants/flashcard-set-id';
+import { FlashcardSetId } from './set';
 
 export type FlashcardId = string;
 

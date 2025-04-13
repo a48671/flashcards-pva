@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const transport: Record<FlashcardId, IFlashcard> = {
   car: {
     id: 'car',

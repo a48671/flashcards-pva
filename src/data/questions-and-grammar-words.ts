@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const questionsAndGrammarWords: Record<FlashcardId, IFlashcard> = {
   what: { id: 'what', nativeText: 'что', targetText: 'what', image: 'what.png', setId: 'questions-and-grammar-words' },
   who: { id: 'who', nativeText: 'кто', targetText: 'who', image: 'who.png', setId: 'questions-and-grammar-words' },

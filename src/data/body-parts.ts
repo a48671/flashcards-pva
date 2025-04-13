@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const bodyParts: Record<FlashcardId, IFlashcard> = {
   head: {
     id: 'head',

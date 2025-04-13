@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const sportsAndActivities: Record<FlashcardId, IFlashcard> = {
   football: {
     id: 'football',

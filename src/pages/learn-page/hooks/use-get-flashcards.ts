@@ -1,5 +1,5 @@
 import { useFlashcardsRepository } from '@/application/use-flashcards-repository';
-import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
+import { FlashcardSetId } from '@/domain/set';
 import { IFlashcard } from '@/domain/flashcard';
 import { useEffect, useState } from 'react';
 

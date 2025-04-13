@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const natureAndEnvironment: Record<FlashcardId, IFlashcard> = {
   sun: {
     id: 'sun',

@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const adverbsAndPrepositions: Record<FlashcardId, IFlashcard> = {
   here: { id: 'here', nativeText: 'здесь', targetText: 'here', image: 'here.png', setId: 'adverbs-and-prepositions' },
   there: { id: 'there', nativeText: 'там', targetText: 'there', image: 'there.png', setId: 'adverbs-and-prepositions' },

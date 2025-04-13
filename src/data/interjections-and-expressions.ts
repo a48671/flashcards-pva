@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const interjectionsAndExpressions: Record<FlashcardId, IFlashcard> = {
   hello: { id: 'hello', nativeText: 'привет', targetText: 'hello', image: 'hello.png', setId: 'interjections-and-expressions' },
   hi: { id: 'hi', nativeText: 'привет', targetText: 'hi', image: 'hi.png', setId: 'interjections-and-expressions' },

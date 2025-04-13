@@ -1,4 +1,4 @@
-import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
+import { FlashcardSetId } from '@/domain/set';
 import { FlashcardId } from '@/domain/flashcard';
 import { RepeatStorageModel } from '@/domain/models/repeat-storage-model';
 import { IRepeatStorage, RepeatedFlashcardData } from '@/domain/ports/repeat-storage';

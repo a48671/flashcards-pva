@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Flashcard from '../../presentation/components/flashcard';
 import { useEffect, useState } from 'react';
 import { useRepeatFlashcardsStorage } from '../../application/use-repeat-flashcards-storage';
-import { FlashcardSetId } from '../../domain/constants/flashcard-set-id';
+import { FlashcardSetId } from '@/domain/set';
 import { useGetFlashcards } from './hooks/use-get-flashcards';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';
 import { FlashcardId } from '@/domain/flashcard';

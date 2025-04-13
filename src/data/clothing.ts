@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const clothingSet: Record<FlashcardId, IFlashcard> = {
   't-shirt': {
     id: 't-shirt',

@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const adjectives: Record<FlashcardId, IFlashcard> = {
   big: { id: 'big', nativeText: 'большой', targetText: 'big', image: 'big.png', setId: 'adjectives' },
   small: { id: 'small', nativeText: 'маленький', targetText: 'small', image: 'small.png', setId: 'adjectives' },

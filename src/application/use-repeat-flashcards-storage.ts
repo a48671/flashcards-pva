@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { IRepeatStorage } from '@/domain/ports/repeat-storage';
 import { RepeatStorage } from '@/infrastructure/storage/repeat-storage';
 import { FlashcardId } from '@/domain/flashcard';
-import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
+import { FlashcardSetId } from '@/domain/set';
 
 const storage: IRepeatStorage = new RepeatStorage();
 

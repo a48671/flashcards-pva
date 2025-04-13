@@ -1,3 +1,5 @@
+import { FlashcardId, IFlashcard } from '@/domain/flashcard';
+
 const pronounsAndDeterminers: Record<FlashcardId, IFlashcard> = {
   I: {
     id: 'I',

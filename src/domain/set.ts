@@ -1,3 +1,3 @@
-import { FlashcardSetId } from './constants/flashcard-set-id';
+export type FlashcardSetId = string;
 
 export interface ISet { id: FlashcardSetId, title: string }
