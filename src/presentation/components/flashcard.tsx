@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { IFlashcard } from '../../domain/flashcard';
+import { SpeakerWaveIcon } from '@heroicons/react/16/solid';
 
 interface Props {
   card: IFlashcard;
@@ -7,11 +8,25 @@ interface Props {
   onClick: VoidFunction;
 }
 
+const speak = (text: string) => {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 1;     // 0.1 to 10
+  utterance.pitch = 1;    // 0 to 2
+  utterance.volume = 1;   // 0 to 1
+  speechSynthesis.speak(utterance);
+};
+
 const Flashcard = ({ card, flipped, onClick }: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isImageLoading, setIsImageLoading] = useState(true);
   
-  const playAudio = () => audioRef.current?.play();
+  const playAudio = () => {
+    if (card.audio) {
+      audioRef.current?.play();
+      return;
+    }
+    speak(card.targetText);
+  };
 
   useLayoutEffect(() => {
     setIsImageLoading(true);
@@ -49,20 +64,17 @@ const Flashcard = ({ card, flipped, onClick }: Props) => {
         {/* Back */}
         <div className="absolute w-full h-full bg-blue-100 rounded-xl shadow-md border border-gray-300 backface-hidden transform rotate-y-180 flex flex-col justify-center items-center p-4">
           <p className="text-xl font-semibold text-center mb-4">{card.targetText}</p>
-          {card.audio && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  playAudio();
-                }}
-                className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700"
-              >
-                  🔊 Play
-              </button>
-              <audio ref={audioRef} src={card.audio} />
-            </>
-          )}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              playAudio();
+            }}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 flex items-center gap-2"
+          >
+            <SpeakerWaveIcon className="h-5 w-5" />
+            Play
+          </button>
+          {card.audio && <audio ref={audioRef} src={card.audio} />}
         </div>
       </div>
     </div>
