@@ -1,18 +1,30 @@
 import { useParams } from 'react-router-dom';
 import Flashcard from '../../presentation/components/flashcard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRepeatFlashcardsStorage } from '../../application/use-repeat-flashcards-storage';
 import { FlashcardSetId } from '../../domain/constants/flashcard-set-id';
 import { useGetFlashcards } from './hooks/use-get-flashcards';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';
+import { FlashcardId } from '@/domain/flashcard';
 
 const LearnPage = () => {
     const { setId } = useParams<{ setId: FlashcardSetId }>();
     const [index, setIndex] = useState(0);
     const [flipped, setFlipped] = useState(false);
+    const [repeatingFlashcardIds, setRepeatingFlashcardIds] = useState<FlashcardId[]>([]);
 
-    const [cards] = useGetFlashcards(setId);
-    const { add } = useRepeatFlashcardsStorage();
+    const [ cards ] = useGetFlashcards(setId);
+    const { add, getBySetId } = useRepeatFlashcardsStorage();
+
+    useEffect(() => {
+      if (!setId) {
+        return;
+      }
+
+      const repeatingFlashcardIdsFromStore = getBySetId(setId);
+
+      setRepeatingFlashcardIds(repeatingFlashcardIdsFromStore);
+    }, [getBySetId]);
   
     const handleNext = () => {
         if (flipped) {
@@ -38,6 +50,8 @@ const LearnPage = () => {
   
     const currentCard = cards[index];
 
+    const isCardAlreadyAddedToRepeating = repeatingFlashcardIds.some(id => currentCard.id === id);
+
     if (!setId || cards.length === 0) {
         return (
             <div className="p-4 flex flex-col items-center space-y-6">
@@ -62,7 +76,7 @@ const LearnPage = () => {
           onNext={ handleNext }
           hasPrev={ index !== 0 }
           hasNext={ index < cards.length - 1 }
-          toggleRepeat={ () => add(setId, currentCard.id) }
+          toggleRepeat={ isCardAlreadyAddedToRepeating ? undefined : () => { add(setId, currentCard.id); setRepeatingFlashcardIds(prev => [...prev, currentCard.id]) } }
         />
       </div>
     );

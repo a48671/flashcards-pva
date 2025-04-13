@@ -7,7 +7,7 @@ interface CheckoutCardsButtonsProps extends PropsWithChildren {
     hasPrev: boolean;
     hasNext: boolean;
     isRepeating?: boolean;
-    toggleRepeat: () => void;
+    toggleRepeat?: () => void;
 }
   
 export function CheckoutCardsButtons({ onPrev, onNext, hasPrev, hasNext, isRepeating, toggleRepeat }: CheckoutCardsButtonsProps) {
@@ -25,8 +25,10 @@ export function CheckoutCardsButtons({ onPrev, onNext, hasPrev, hasNext, isRepea
         </button>
   
         <button
-          onClick={toggleRepeat}
-          className="flex items-center gap-2 px-4 py-2 border rounded-lg shadow-sm bg-white text-blue-600 hover:bg-blue-50"
+            disabled={ !toggleRepeat }
+            onClick={toggleRepeat}
+            className={ `flex items-center gap-2 px-4 py-2 border rounded-lg shadow-sm bg-white text-blue-600 hover:bg-blue-50 ${
+                toggleRepeat ? 'bg-white text-blue-600 hover:bg-blue-50' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}` }
         >
           {isRepeating ? (
             <>
@@ -42,8 +44,8 @@ export function CheckoutCardsButtons({ onPrev, onNext, hasPrev, hasNext, isRepea
         </button>
   
         <button
-          onClick={onNext}
-          disabled={!hasNext}
+          onClick={ onNext }
+          disabled={ !hasNext }
           className={`flex items-center gap-2 px-4 py-2 border rounded-lg shadow-sm ${
             hasNext ? 'bg-white text-blue-600 hover:bg-blue-50' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
           }`}
