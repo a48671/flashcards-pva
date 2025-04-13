@@ -13,6 +13,7 @@ const speak = (text: string) => {
   utterance.rate = 1;     // 0.1 to 10
   utterance.pitch = 1;    // 0 to 2
   utterance.volume = 1;   // 0 to 1
+  utterance.lang = 'en';
   speechSynthesis.speak(utterance);
 };
 
