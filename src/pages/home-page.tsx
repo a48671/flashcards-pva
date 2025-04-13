@@ -21,7 +21,7 @@ const HomePage = () => {
   
       {/* Flashcard Sets */}
       <ul className="space-y-4">
-        {sets.map((set) => (
+        {Object.values(sets).map((set) => (
           <li key={set.id}>
             <Link
               to={`/learn/${set.id}`}
