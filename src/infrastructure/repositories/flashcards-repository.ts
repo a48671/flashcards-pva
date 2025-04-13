@@ -3,23 +3,28 @@ import { FlashcardId, IFlashcard } from '@/domain/flashcard';
 import { IFlashcardsRepository } from '@/domain/ports/flashcards-repository';
 
 export class FlashcardsRepository implements IFlashcardsRepository {
-    async getBySetId(setId: FlashcardSetId): Promise<IFlashcard[]> {
-      const result = (await import(`@/data/${setId}.ts`))?.default;
+  async getBySetId(setId: FlashcardSetId): Promise<IFlashcard[]> {
+    const set = await this._getSet(setId);
 
-      if (!Array.isArray(result)) {
-        throw new Error(`Flashcard data for set "${setId}" is invalid or not found.`);
-      }
-
-      return result;
+    if (!set) {
+      throw new Error(`Flashcard data for set "${setId}" is invalid or not found.`);
     }
 
-    async getCard(setId:FlashcardSetId, cardId: FlashcardId): Promise<IFlashcard | undefined> {
-      try {
-        const cards = await this.getBySetId(setId);
-        return cards.find(card => card.id === cardId);
-      } catch (err) {
-        console.error(err);
-        return undefined;
-      }
+    return Object.values(set);
+  }
+
+  async getCard(setId:FlashcardSetId, cardId: FlashcardId): Promise<IFlashcard | undefined> {
+    try {
+      const set = await this._getSet(setId);
+
+      return set[cardId];
+    } catch (err) {
+      console.error(err);
+      return undefined;
     }
+  }
+
+  private async _getSet(setId: FlashcardSetId): Promise<Record<FlashcardId, IFlashcard>> {
+    return (await import(`@/data/${setId}.ts`))?.default;
+  }
 }

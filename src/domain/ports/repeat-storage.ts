@@ -1,5 +1,5 @@
-import { FlashcardSetId } from "../constants/flashcard-set-id";
-import { FlashcardId } from "../flashcard";
+import { FlashcardSetId } from '../constants/flashcard-set-id';
+import { FlashcardId } from '../flashcard';
 
 export interface RepeatedFlashcardData { setId: FlashcardSetId, flashcardId: FlashcardId }
 

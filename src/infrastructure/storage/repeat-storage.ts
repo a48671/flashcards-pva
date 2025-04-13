@@ -1,7 +1,7 @@
-import { FlashcardSetId } from "../../domain/constants/flashcard-set-id";
-import { FlashcardId } from "../../domain/flashcard";
-import { RepeatStorageModel } from "../../domain/models/repeat-storage-model";
-import { IRepeatStorage, RepeatedFlashcardData } from "../../domain/ports/repeat-storage";
+import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
+import { FlashcardId } from '@/domain/flashcard';
+import { RepeatStorageModel } from '@/domain/models/repeat-storage-model';
+import { IRepeatStorage, RepeatedFlashcardData } from '@/domain/ports/repeat-storage';
 
 const STORAGE_KEY = 'repeat-flashcards';
 
@@ -10,13 +10,13 @@ export class RepeatStorage implements IRepeatStorage {
     const groupedBySetId = this._getData();    
 
     return (Object.keys(groupedBySetId) as FlashcardSetId[])
-        .reduce<RepeatedFlashcardData[]>((acc, setId) => {
-            const withSetIds = groupedBySetId[setId]?.map((flashcardId) => ({ flashcardId, setId })) || [];
-            return [
-                ...acc,
-                ...withSetIds
-            ];
-        }, []);
+      .reduce<RepeatedFlashcardData[]>((acc, setId) => {
+        const withSetIds = groupedBySetId[setId]?.map((flashcardId) => ({ flashcardId, setId })) || [];
+        return [
+          ...acc,
+          ...withSetIds
+        ];
+      }, []);
   }
 
   public getBySetId(setId: FlashcardSetId): FlashcardId[] {
@@ -51,7 +51,7 @@ export class RepeatStorage implements IRepeatStorage {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return {};
     try {
-        return JSON.parse(raw) as RepeatStorageModel;
+      return JSON.parse(raw) as RepeatStorageModel;
     } catch {
       return {};
     }
