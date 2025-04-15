@@ -1,20 +1,24 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Flashcard from '../../presentation/components/flashcard';
 import { useEffect, useState } from 'react';
 import { useRepeatFlashcardsStorage } from '../../application/use-repeat-flashcards-storage';
 import { FlashcardSetId } from '@/domain/set';
 import { useGetFlashcards } from './hooks/use-get-flashcards';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';
-import { FlashcardId } from '@/domain/flashcard';
+import { RepeatedFlashcardData } from '@/domain/ports/repeat-storage';
+import { Button } from '@/presentation/components/button';
+import { setSourceMapsEnabled } from 'process';
 
 const LearnPage = () => {
   const { setId } = useParams<{ setId: FlashcardSetId }>();
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [repeatingFlashcardIds, setRepeatingFlashcardIds] = useState<FlashcardId[]>([]);
+  const [repeatingFlashcardIds, setRepeatingFlashcardIds] = useState<RepeatedFlashcardData[]>([]);
 
   const [cards] = useGetFlashcards(setId);
   const { add, getBySetId } = useRepeatFlashcardsStorage();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!setId) {
@@ -50,7 +54,7 @@ const LearnPage = () => {
   
   const currentCard = cards[index];
 
-  const isCardAlreadyAddedToRepeating = repeatingFlashcardIds.some(id => currentCard.id === id);
+  const isCardAlreadyAddedToRepeating = repeatingFlashcardIds.some(({ flashcardId }) => currentCard.id === flashcardId);
 
   if (!setId || cards.length === 0) {
     return (
@@ -76,8 +80,11 @@ const LearnPage = () => {
         onNext={ handleNext }
         hasPrev={ index !== 0 }
         hasNext={ index < cards.length - 1 }
-        toggleRepeat={ isCardAlreadyAddedToRepeating ? undefined : () => { add(setId, currentCard.id); setRepeatingFlashcardIds(prev => [...prev, currentCard.id]); } }
+        toggleRepeat={ isCardAlreadyAddedToRepeating ? undefined : () => { add(setId, currentCard.id); setRepeatingFlashcardIds(prev => [...prev, { flashcardId: currentCard.id, setId }]); } }
       />
+      <Button disabled={ !repeatingFlashcardIds.length } onClick={ () => navigate(`/repeating/${setId}`) }>
+        Repeat added flashcards
+      </Button>  
     </div>
   );
 };

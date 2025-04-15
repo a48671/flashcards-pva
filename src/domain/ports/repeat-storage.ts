@@ -5,7 +5,7 @@ export interface RepeatedFlashcardData { setId: FlashcardSetId, flashcardId: Fla
 
 export interface IRepeatStorage {
     getAll(): RepeatedFlashcardData[];
-    getBySetId(setId: FlashcardSetId): FlashcardId[];
+    getBySetId(setId: FlashcardSetId): RepeatedFlashcardData[];
     add(setId: FlashcardSetId, flashcardId: FlashcardId): void;
     remove(setId: FlashcardSetId, flashcardId: FlashcardId): void;
 }

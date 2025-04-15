@@ -6,8 +6,11 @@ import { RepeatedFlashcardData } from '@/domain/ports/repeat-storage';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';
 import Flashcard from '@/presentation/components/flashcard';
 import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function RepeatingPage() {
+  const { setId: setIdFromUrl } = useParams<{ setId: FlashcardSetId }>();
+ 
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
@@ -15,7 +18,7 @@ function RepeatingPage() {
   const [card, setCard] = useState<IFlashcard | undefined>();
 
   const { getCard } = useFlashcardsRepository();
-  const { getAll, remove } = useRepeatFlashcardsStorage();
+  const { getAll, getBySetId, remove } = useRepeatFlashcardsStorage();
 
   const cardForRepeating = cardsForRepeating[index];
   const setId = cardForRepeating?.setId;
@@ -30,20 +33,33 @@ function RepeatingPage() {
     }
   }, [getCard]);
 
-  const getAllCardForRepeating = useCallback(() => {
+  const getAllCardsForRepeating = useCallback(() => {
     const allForRepeating = getAll();
     setCardsForRepeating(allForRepeating);
   }, [getAll]);
 
+  const getCardsForRepeatingBySetId = useCallback((setId: FlashcardSetId) => {
+    const cardsForRepeating = getBySetId(setId);
+    setCardsForRepeating(cardsForRepeating);
+  }, [getBySetId]);
+
+  const getCardsForRepeating = useCallback(() => {
+    if (setIdFromUrl) {
+      getCardsForRepeatingBySetId(setIdFromUrl);
+    } else {
+      getAllCardsForRepeating();
+    }
+  }, [getAllCardsForRepeating, getCardsForRepeatingBySetId, setIdFromUrl]);
+
   useEffect(() => {
-    getAllCardForRepeating();
-  }, [getAllCardForRepeating]);
+    getCardsForRepeating();
+  }, [getCardsForRepeating]);
 
   useEffect(() => {
     if (!setId || !flashcardId) return;
 
     getCardByIndex(setId, flashcardId);
-  }, [index, setId, flashcardId, getAllCardForRepeating, getCardByIndex]);
+  }, [index, setId, flashcardId, getCardByIndex]);
   
   const handleNext = () => {
     if (flipped) {
@@ -97,7 +113,7 @@ function RepeatingPage() {
         onNext={ handleNext }
         hasPrev={ index !== 0 }
         hasNext={ index < cardsForRepeating.length - 1 }
-        toggleRepeat={ () => { remove(setId, flashcardId); getAllCardForRepeating(); } }
+        toggleRepeat={ () => { remove(setId, flashcardId); getCardsForRepeating(); } }
         isRepeating
       />     
     </div>

@@ -19,9 +19,9 @@ export class RepeatStorage implements IRepeatStorage {
       }, []);
   }
 
-  public getBySetId(setId: FlashcardSetId): FlashcardId[] {
+  public getBySetId(setId: FlashcardSetId): RepeatedFlashcardData[] {
     const data = this._getData();
-    return data[setId] ?? [];
+    return data[setId]?.map(flashcardId => ({ flashcardId, setId })) ?? [];
   }
 
   public add(setId: FlashcardSetId, flashcardId: FlashcardId) {
