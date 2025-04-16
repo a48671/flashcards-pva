@@ -4,6 +4,7 @@ import LearnPage from '@/pages/learn-page';
 import RepeatingPage from '@/pages/repeating-page';
 import { Navigation } from './presentation/components/navigation';
 import { BASENAME } from './config';
+import RepeatingListPage from './pages/repeating-list-page';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/learn/:setId" element={<LearnPage />} />
+            <Route path="/repeating-list" element={<RepeatingListPage />} />
             <Route path="/repeating/:setId" element={<RepeatingPage />} />
             <Route path="/repeating" element={<RepeatingPage />} />
           </Routes>

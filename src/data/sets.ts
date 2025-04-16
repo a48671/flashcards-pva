@@ -1,4 +1,6 @@
-export const sets = {
+import { FlashcardSetId, ISet } from '@/domain/set';
+
+export const sets: Record<FlashcardSetId, ISet> = {
   'fruits-and-vegetables': { id: 'fruits-and-vegetables', title: 'Fruits and Vegetables' },
   'people-relationships': { id: 'people-relationships', title: 'People & Relationships' },
   'animals': { id: 'animals',  title: 'Animals' },

@@ -11,7 +11,7 @@ const HomePage = () => {
       {/* Repeating Button */}
       <div className="mb-6">
         <Link
-          to="/repeating"
+          to="/repeating-list"
           className="flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-xl shadow transition duration-300"
         >
           <ArrowPathIcon className="h-5 w-5" />

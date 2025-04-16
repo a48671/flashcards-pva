@@ -7,7 +7,6 @@ import { useGetFlashcards } from './hooks/use-get-flashcards';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';
 import { RepeatedFlashcardData } from '@/domain/ports/repeat-storage';
 import { Button } from '@/presentation/components/button';
-import { setSourceMapsEnabled } from 'process';
 
 const LearnPage = () => {
   const { setId } = useParams<{ setId: FlashcardSetId }>();

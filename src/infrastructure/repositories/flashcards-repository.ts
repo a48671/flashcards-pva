@@ -1,6 +1,6 @@
-import { FlashcardSetId } from '@/domain/constants/flashcard-set-id';
 import { FlashcardId, IFlashcard } from '@/domain/flashcard';
 import { IFlashcardsRepository } from '@/domain/ports/flashcards-repository';
+import { FlashcardSetId } from '@/domain/set';
 
 export class FlashcardsRepository implements IFlashcardsRepository {
   async getBySetId(setId: FlashcardSetId): Promise<IFlashcard[]> {

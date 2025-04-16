@@ -4,6 +4,7 @@ import { FlashcardId } from '../flashcard';
 export interface RepeatedFlashcardData { setId: FlashcardSetId, flashcardId: FlashcardId }
 
 export interface IRepeatStorage {
+    getAllSetIs(): FlashcardSetId[];
     getAll(): RepeatedFlashcardData[];
     getBySetId(setId: FlashcardSetId): RepeatedFlashcardData[];
     add(setId: FlashcardSetId, flashcardId: FlashcardId): void;

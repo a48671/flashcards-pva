@@ -11,6 +11,7 @@ export function useRepeatFlashcardsStorage() {
   const getBySetId = useCallback((setId: FlashcardSetId) => storage.getBySetId(setId), []);
   const add = useCallback((setId: FlashcardSetId, cardId: FlashcardId) => storage.add(setId, cardId), []);
   const remove = useCallback((setId: FlashcardSetId, cardId: FlashcardId) => storage.remove(setId, cardId), []);
+  const getAllSetIs = useCallback(() => storage.getAllSetIs(), []);
 
-  return { getAll, getBySetId, add, remove };
+  return { getAll, getBySetId, add, remove, getAllSetIs };
 }

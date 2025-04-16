@@ -13,7 +13,7 @@ export function Navigation() {
           } hover:text-blue-600`}
         />
       </Link>
-      <Link to="/repeating" title="Repeat">
+      <Link to="/repeating-list" title="Repeat">
         <ArrowPathRoundedSquareIcon
           className={`w-6 h-6 ${
             location.pathname === '/repeating' ? 'text-blue-600' : 'text-gray-500'
