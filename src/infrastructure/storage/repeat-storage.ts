@@ -6,7 +6,7 @@ import { IRepeatStorage, RepeatedFlashcardData } from '@/domain/ports/repeat-sto
 const STORAGE_KEY = 'repeat-flashcards';
 
 export class RepeatStorage implements IRepeatStorage {
-  public getAll(): RepeatedFlashcardData[] {
+  public getAllCards(): RepeatedFlashcardData[] {
     const groupedBySetId = this._getData();    
 
     return (Object.keys(groupedBySetId) as FlashcardSetId[])
@@ -19,10 +19,18 @@ export class RepeatStorage implements IRepeatStorage {
       }, []);
   }
 
-  public getAllSetIs(): FlashcardSetId[] {
+  public getAllSets(): { setId: FlashcardSetId, flashcardIds: FlashcardId[] }[] {
     const data = this._getData();
 
-    return Object.keys(data);
+    return Object.keys(data).reduce<{ setId: FlashcardSetId, flashcardIds: FlashcardId[] }[]>((result, setId) => {
+      const flashcardIds = data[setId];
+      if (!flashcardIds?.length) {
+        return result;
+      }
+      result.push({ setId, flashcardIds });
+
+      return result;
+    }, []);
   }
 
   public getBySetId(setId: FlashcardSetId): RepeatedFlashcardData[] {

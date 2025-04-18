@@ -7,11 +7,11 @@ import { FlashcardSetId } from '@/domain/set';
 const storage: IRepeatStorage = new RepeatStorage();
 
 export function useRepeatFlashcardsStorage() {
-  const getAll = useCallback(() => storage.getAll(), []);
+  const getAllCards = useCallback(() => storage.getAllCards(), []);
   const getBySetId = useCallback((setId: FlashcardSetId) => storage.getBySetId(setId), []);
   const add = useCallback((setId: FlashcardSetId, cardId: FlashcardId) => storage.add(setId, cardId), []);
   const remove = useCallback((setId: FlashcardSetId, cardId: FlashcardId) => storage.remove(setId, cardId), []);
-  const getAllSetIs = useCallback(() => storage.getAllSetIs(), []);
+  const getAllSets = useCallback(() => storage.getAllSets(), []);
 
-  return { getAll, getBySetId, add, remove, getAllSetIs };
+  return { getAllCards, getBySetId, add, remove, getAllSets };
 }

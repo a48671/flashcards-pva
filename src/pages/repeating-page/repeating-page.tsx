@@ -18,7 +18,7 @@ function RepeatingPage() {
   const [card, setCard] = useState<IFlashcard | undefined>();
 
   const { getCard } = useFlashcardsRepository();
-  const { getAll, getBySetId, remove } = useRepeatFlashcardsStorage();
+  const { getAllCards, getBySetId, remove } = useRepeatFlashcardsStorage();
 
   const cardForRepeating = cardsForRepeating[index];
   const setId = cardForRepeating?.setId;
@@ -34,9 +34,9 @@ function RepeatingPage() {
   }, [getCard]);
 
   const getAllCardsForRepeating = useCallback(() => {
-    const allForRepeating = getAll();
+    const allForRepeating = getAllCards();
     setCardsForRepeating(allForRepeating);
-  }, [getAll]);
+  }, [getAllCards]);
 
   const getCardsForRepeatingBySetId = useCallback((setId: FlashcardSetId) => {
     const cardsForRepeating = getBySetId(setId);
