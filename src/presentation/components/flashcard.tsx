@@ -59,12 +59,16 @@ const Flashcard = ({ card, flipped, onClick }: Props) => {
               />
             </>
           )}
-          <p className="text-xl font-semibold text-center">{card.nativeText}</p>
+          <p className="text-xl font-semibold text-center">
+            {card.nativeText.charAt(0)?.toUpperCase() + card.nativeText.slice(1)}
+          </p>
         </div>
   
         {/* Back */}
         <div className="absolute w-full h-full bg-blue-100 rounded-xl shadow-md border border-gray-300 backface-hidden transform rotate-y-180 flex flex-col justify-center items-center p-4">
-          <p className="text-xl font-semibold text-center mb-4">{card.targetText}</p>
+          <p className="text-xl font-semibold text-center mb-4">
+            {card.targetText.charAt(0)?.toUpperCase() + card.targetText.slice(1)}
+          </p>
           <button
             onClick={(e) => {
               e.stopPropagation();
