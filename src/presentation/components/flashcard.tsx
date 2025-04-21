@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { IFlashcard } from '../../domain/flashcard';
-import { SpeakerWaveIcon } from '@heroicons/react/16/solid';
+import { SpeakerWaveIcon, CheckCircleIcon } from '@heroicons/react/16/solid'; // use SpeakerWaveIcon for play
 
 interface Props {
   card: IFlashcard;
@@ -10,9 +10,9 @@ interface Props {
 
 const speak = (text: string) => {
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 0.5;     // 0.1 to 10
-  utterance.pitch = 1;    // 0 to 2
-  utterance.volume = 1;   // 0 to 1
+  utterance.rate = 0.5;
+  utterance.pitch = 1;
+  utterance.volume = 1;
   utterance.lang = 'en';
   speechSynthesis.speak(utterance);
 };
@@ -20,7 +20,9 @@ const speak = (text: string) => {
 const Flashcard = ({ card, flipped, onClick }: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isImageLoading, setIsImageLoading] = useState(true);
-  
+  const [inputValue, setInputValue] = useState('');
+  const [isCorrect, setIsCorrect] = useState(false);
+
   const playAudio = () => {
     if (card.audio) {
       audioRef.current?.play();
@@ -31,8 +33,19 @@ const Flashcard = ({ card, flipped, onClick }: Props) => {
 
   useLayoutEffect(() => {
     setIsImageLoading(true);
+    setInputValue('');
+    setIsCorrect(false);
   }, [card.image]);
-  
+
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+    if (value.trim().toLowerCase() === card.targetText.trim().toLowerCase()) {
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
+  };
+
   return (
     <div className="w-72 h-96 [perspective:1000px]" onClick={onClick}>
       <div
@@ -59,11 +72,39 @@ const Flashcard = ({ card, flipped, onClick }: Props) => {
               />
             </>
           )}
-          <p className="text-xl font-semibold text-center">
+          <p className="text-xl font-semibold text-center mb-2">
             {card.nativeText.charAt(0)?.toUpperCase() + card.nativeText.slice(1)}
           </p>
+
+          {/* Input field */}
+          <div className="w-full flex flex-col items-center mt-2">
+            <div className="w-full flex items-center gap-2">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => handleInputChange(e.target.value)}
+                placeholder="Enter word in English"
+                className={`w-full px-3 py-2 border ${
+                  isCorrect ? 'border-green-500' : 'border-gray-300'
+                } rounded focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                onClick={(e) => e.stopPropagation()}
+              />
+              {isCorrect && <>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    speak(card.targetText);
+                  }}
+                  className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition"
+                >
+                  <SpeakerWaveIcon className="h-5 w-5" />
+                </button>
+              </>}
+            </div>
+          </div>
         </div>
-  
+
         {/* Back */}
         <div className="absolute w-full h-full bg-blue-100 rounded-xl shadow-md border border-gray-300 backface-hidden transform rotate-y-180 flex flex-col justify-center items-center p-4">
           <p className="text-xl font-semibold text-center mb-4">
@@ -85,5 +126,5 @@ const Flashcard = ({ card, flipped, onClick }: Props) => {
     </div>
   );
 };
-  
+
 export default Flashcard;
