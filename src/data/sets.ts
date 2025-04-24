@@ -21,7 +21,9 @@ export const sets: Record<FlashcardSetId, ISet> = {
   'adjectives': { id: 'adjectives', title: 'Adjectives' },
   'adverbs-and-prepositions': { id: 'adverbs-and-prepositions', title: 'Adverbs & Prepositions' },
   'interjections-and-expressions': { id: 'interjections-and-expressions', title: 'Interjections & Expressions' },
-  'questions-and-grammar-words': { id: 'questions-and-grammar-words', title: 'Questions & Grammar Words' }
+  'questions-and-grammar-words': { id: 'questions-and-grammar-words', title: 'Questions & Grammar Words' },
+  'a-2.1': { id: 'a-2.1', title: 'A2 - 1' },
+  'a-2.2': { id: 'a-2.2', title: 'A2 - 2' }
 };
 
 export default sets;

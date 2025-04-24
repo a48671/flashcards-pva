@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { IFlashcard } from '../../domain/flashcard';
-import { SpeakerWaveIcon, CheckCircleIcon } from '@heroicons/react/16/solid'; // use SpeakerWaveIcon for play
+import { SpeakerWaveIcon } from '@heroicons/react/16/solid'; // use SpeakerWaveIcon for play
 
 interface Props {
   card: IFlashcard;
@@ -10,7 +10,7 @@ interface Props {
 
 const speak = (text: string) => {
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 0.5;
+  utterance.rate = 1;
   utterance.pitch = 1;
   utterance.volume = 1;
   utterance.lang = 'en';
