@@ -23,7 +23,8 @@ export const sets: Record<FlashcardSetId, ISet> = {
   'interjections-and-expressions': { id: 'interjections-and-expressions', title: 'Interjections & Expressions' },
   'questions-and-grammar-words': { id: 'questions-and-grammar-words', title: 'Questions & Grammar Words' },
   'a-2.1': { id: 'a-2.1', title: 'A2 - 1' },
-  'a-2.2': { id: 'a-2.2', title: 'A2 - 2' }
+  'a-2.2': { id: 'a-2.2', title: 'A2 - 2' },
+  'a-2.3': { id: 'a-2.3', title: 'A2 - 3' }
 };
 
 export default sets;
