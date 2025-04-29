@@ -15,14 +15,14 @@ const phrases: Record<FlashcardId, IFlashcard> = {
   },
   phrase3: {
     id: 'phrase3',
-    nativeText: 'Пока я читал эту книгу, она становилась всё интереснее, потому что сюжет был захватывающий.',
+    nativeText: 'Пока я читал эту книгу я становился все более заинтересованным этим потому что сюжет был таким захватывающим.',
     targetText: 'While I was reading that book, I was getting more and more interested in it, because the plot was so thrilling.',
     setId: 'a-2.3'
   },
   phrase4: {
     id: 'phrase4',
-    nativeText: 'Меня стало больше интересовать этот вопрос.',
-    targetText: 'I became more interested in this kind of issue.',
+    nativeText: 'Я стал более интересоваться такого рода вопросами.',
+    targetText: 'I got more interested in this kind of issues.',
     setId: 'a-2.3'
   },
   phrase5: {
@@ -39,7 +39,7 @@ const phrases: Record<FlashcardId, IFlashcard> = {
   },
   phrase7: {
     id: 'phrase7',
-    nativeText: 'Пока я читал эту книгу, она становилась всё интереснее, потому что это была такая захватывающая история.',
+    nativeText: 'Пока я читал эту книгу я все более интересовался этим потому что это была такая захватывающая история.',
     targetText: 'While I was reading that book, I was getting more and more interested in it, because it was such a thrilling story.',
     setId: 'a-2.3'
   },
@@ -81,8 +81,8 @@ const phrases: Record<FlashcardId, IFlashcard> = {
   },
   phrase14: {
     id: 'phrase14',
-    nativeText: 'Это была такая трудная ситуация. Я много работал, стараясь изо всех сил заработать на жизнь.',
-    targetText: 'It was such a difficult situation. I was working so much, trying to do my best to earn enough money for a living.',
+    nativeText: 'Это была такая сложная ситуация я так много работал я старался изо всех сил чтобы заработать достаточно денег на жизнь.',
+    targetText: 'It was such a difficult situation. I was working so much. I was trying to do my best to earn enough money for a living.',
     setId: 'a-2.3'
   },
   phrase15: {
@@ -105,8 +105,8 @@ const phrases: Record<FlashcardId, IFlashcard> = {
   },
   phrase18: {
     id: 'phrase18',
-    nativeText: 'Это была очень трудная ситуация. Я очень много работал, стараясь изо всех сил заработать на жизнь.',
-    targetText: 'It was a very difficult situation. I was working really hard, trying to do my best to earn enough money to live on.',
+    nativeText: 'Это была очень сложная ситуация. Я работал действительно усердно. Я изо всех сил старался заработать достаточно денег на которое жить.',
+    targetText: 'It was a very difficult situation. I was working really hard, I was trying to do my best to earn enough money to live on.',
     setId: 'a-2.3'
   },
   phrase19: {
