@@ -24,7 +24,8 @@ export const sets: Record<FlashcardSetId, ISet> = {
   'questions-and-grammar-words': { id: 'questions-and-grammar-words', title: 'Questions & Grammar Words' },
   'a-2.1': { id: 'a-2.1', title: 'Past Perfect' },
   'a-2.2': { id: 'a-2.2', title: 'Past Continues' },
-  'a-2.3': { id: 'a-2.3', title: 'Past Simple / Past Continues' }
+  'a-2.3': { id: 'a-2.3', title: 'Past Simple / Past Continues' },
+  'a-2.4': { id: 'a-2.4', title: 'Past Perfect' }
 };
 
 export default sets;

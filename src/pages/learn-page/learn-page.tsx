@@ -7,6 +7,7 @@ import { useGetFlashcards } from './hooks/use-get-flashcards';
 import { CheckoutCardsButtons } from '@/presentation/components/checkout-cards-buttons';
 import { RepeatedFlashcardData } from '@/domain/ports/repeat-storage';
 import { Button } from '@/presentation/components/button';
+import sets from '@/data/sets';
 
 const LearnPage = () => {
   const { setId } = useParams<{ setId: FlashcardSetId }>();
@@ -68,7 +69,7 @@ const LearnPage = () => {
   
   return (
     <div className="p-4 flex flex-col items-center space-y-6">
-      <h1 className="text-2xl font-bold">{setId}</h1>
+      <h1 className="text-2xl font-bold">{ sets[setId]?.title }</h1>
       <Flashcard
         flipped={ flipped }
         card={currentCard}

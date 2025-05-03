@@ -105,7 +105,7 @@ const phrases: Record<FlashcardId, IFlashcard> = {
   },
   phrase18: {
     id: 'phrase18',
-    nativeText: 'Это была очень сложная ситуация. Я работал действительно усердно. Я изо всех сил старался заработать достаточно денег на которое жить.',
+    nativeText: 'Это была очень сложная ситуация. Я работал действительно усердно. Я изо всех сил старался заработать достаточно денег на которые жить.',
     targetText: 'It was a very difficult situation. I was working really hard. I was trying to do my best to earn enough money to live on.',
     setId: 'a-2.3'
   },
